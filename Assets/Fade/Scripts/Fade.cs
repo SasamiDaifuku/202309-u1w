@@ -47,8 +47,19 @@ public class Fade : MonoBehaviour
 		fade.Range = cutoutRange;
 	}
 
+	/// <summary>
+	/// 強制的にFadeImageを塗りつぶす(追加)
+	/// </summary>
+	void ImageFill()
+	{
+		cutoutRange = 1f;
+		fade.Range = cutoutRange;
+	}
+	
 	IEnumerator FadeoutCoroutine (float time, System.Action action)
 	{
+		//追加
+		ImageFill();
 		float endTime = Time.timeSinceLevelLoad + time * (cutoutRange);
 
 		var endFrame = new WaitForEndOfFrame ();
@@ -66,20 +77,9 @@ public class Fade : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// 強制的にFadeImageを塗りつぶす(追加)
-	/// </summary>
-	void ImageFill()
-	{
-		cutoutRange = 1f;
-		fade.Range = cutoutRange;
-	}
-
 	IEnumerator FadeinCoroutine (float time, System.Action action)
 	{
-		//追加
-		ImageFill();
-		Debug.Log("テスト");
+		
 		float endTime = Time.timeSinceLevelLoad + time * (1 - cutoutRange);
 		
 		var endFrame = new WaitForEndOfFrame ();

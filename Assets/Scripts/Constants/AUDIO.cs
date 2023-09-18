@@ -3,7 +3,6 @@
 /// </summary>
 public static class AUDIO
 {
-	  public const string BGM_IWASHIRO_AME_NO_HAZAMA = "iwashiro_ame_no_hazama";
+	  public const string BGM_IWASHIRO_SAWAGURO_ERIKO = "iwashiro_sawaguro_eriko";
 	
-	  public const string SE_猫の鳴き声1 = "猫の鳴き声1";
 }
