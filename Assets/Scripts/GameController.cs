@@ -2,28 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Game画面でのメイン処理
+/// </summary>
 public class GameController : MonoBehaviour
 {
+    
     //FadeCanvas取得
-    [SerializeField] private Fade fade;
-
-    //フェード時間(秒)
-    [SerializeField] private float fadeTime;
-
-    private void Start()
+    [SerializeField] private FadeManager fadeManager;
+    
+    void Start()
     {
-        //シーン開始時にフェードをかける
-        fade.FadeOut(fadeTime);
+        //フェードイン処理
+        fadeManager.SceneFadeIn();
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
     }
-    
-    private void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //シーンを遷移する
-            Debug.Log("スペースキーが押されました");
-        }
+        
     }
 }
