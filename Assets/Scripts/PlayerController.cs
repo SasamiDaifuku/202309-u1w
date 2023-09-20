@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private const float JUMP_POWER = 400;
     private Rigidbody2D _rigidbody2DPlayer;
+    [SerializeField] private GroundCheck _groundCheck;
 
     private void Start()
     {
@@ -14,10 +15,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 設置している場合はジャンプ
+        if (_groundCheck.CheckGroundStatus())
         {
-            //ジャンプする
-            _rigidbody2DPlayer.AddForce(Vector2.up * JUMP_POWER);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //ジャンプする
+                _rigidbody2DPlayer.AddForce(Vector2.up * JUMP_POWER);
+            }
         }
+    }
+
+    /// <summary>
+    /// 衝突を検知
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("何かが判定に入りました");
     }
 }
