@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Game画面でのメイン処理
@@ -22,6 +23,20 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // 現在のキーボード情報
+        var current = Keyboard.current;
+
+        // キーボード接続チェック
+        if (current == null)
+        {
+            // キーボードが接続されていないと
+            // Keyboard.currentがnullになる
+            return;
+        }
+        // Rキーが押された瞬間かどうか
+        if (current.rKey.wasPressedThisFrame)
+        {
+            fadeManager.CurrentSceneTransition();
+        }
     }
 }

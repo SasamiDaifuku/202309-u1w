@@ -1,37 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
     private const float JUMP_POWER = 400;
     private Rigidbody2D _rigidbody2DPlayer;
-    [SerializeField] private GroundCheck _groundCheck;
+    [SerializeField] private GroundCheck groundCheck;
+    private GameInputs _gameInputs;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody2DPlayer = GetComponent<Rigidbody2D>();
+        // Actionスクリプトのインスタンス生成
+        _gameInputs = new GameInputs();
+        // Actionイベント登録
+        _gameInputs.Player.Jump.performed += OnJump;
+        // Input Actionを機能させるためには、
+        // 有効化する必要がある
+        _gameInputs.Enable();
     }
-
-    private void Update()
+    
+    private void OnDestroy()
     {
-        // 設置している場合はジャンプ
-        if (_groundCheck.CheckGroundStatus())
+        // 自身でインスタンス化したActionクラスはIDisposableを実装しているので、
+        // 必ずDisposeする必要がある
+        _gameInputs?.Dispose();
+    }
+    
+    private void OnJump(InputAction.CallbackContext context)
+    {
+        if (groundCheck.CheckGroundStatus())
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //ジャンプする
-                _rigidbody2DPlayer.AddForce(Vector2.up * JUMP_POWER);
-            }
+            // ジャンプする力を与える
+            _rigidbody2DPlayer.AddForce(Vector2.up * JUMP_POWER);
         }
     }
-
-    /// <summary>
-    /// 衝突を検知
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        Debug.Log("何かが判定に入りました");
+        
     }
 }
