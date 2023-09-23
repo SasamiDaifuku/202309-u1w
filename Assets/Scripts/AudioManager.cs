@@ -9,8 +9,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 	//ボリューム保存用のkeyとデフォルト値
 	private const string BGM_VOLUME_KEY = "BGM_VOLUME_KEY";
 	private const string SE_VOLUME_KEY = "SE_VOLUME_KEY";
-	private const float BGM_VOLUME_DEFAULT = 1.0f;
-	private const float SE_VOLUME_DEFAULT = 1.0f;
+	private const float BGM_VOLUME_DEFAULT = 0.7f;
+	private const float SE_VOLUME_DEFAULT = 0.5f;
 	
    	//オーディオファイルのパス
    	private const string BGM_PATH = "Audio/BGM";
@@ -196,6 +196,27 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 		}
 
 		PlayerPrefs.SetFloat (BGM_VOLUME_KEY,  bgmVolume);
+		PlayerPrefs.SetFloat (SE_VOLUME_KEY,   seVolume);
+	}
+	/// <summary>
+	/// BGMボリュームを変更&保存
+	/// </summary>
+	/// <param name="bgmVolume"></param>
+	public void ChangeBGMVolume (float bgmVolume)
+	{
+		_bgmSource.volume = bgmVolume;
+
+		PlayerPrefs.SetFloat (BGM_VOLUME_KEY,  bgmVolume);
+	}
+	/// <summary>
+	/// SEボリュームを変更&保存
+	/// </summary>
+	/// <param name="seVolume"></param>
+	public void ChangeSeVolume (float seVolume)
+	{
+		foreach(AudioSource seSource in _seSourceList){
+			seSource.volume  = seVolume;
+		}
 		PlayerPrefs.SetFloat (SE_VOLUME_KEY,   seVolume);
 	}
 	

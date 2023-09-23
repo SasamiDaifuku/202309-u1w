@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     private const float JUMP_POWER = 400;
     private bool _firstJump;
     private Rigidbody2D _rigidbody2DPlayer;
-    [SerializeField] private GroundCheck groundCheck;
     private GameInputs _gameInputs;
+    private AudioManager _audioManager;
+    
     [SerializeField] private GameController gameController;
+    [SerializeField] private GroundCheck groundCheck;
+   
 
     private void Awake()
     {
@@ -20,6 +23,8 @@ public class PlayerController : MonoBehaviour
         _gameInputs = new GameInputs();
         // Actionイベント登録
         _gameInputs.Player.Jump.performed += OnJump;
+        //AudioManagerを取得
+        _audioManager = AudioManager.Instance;
         // Input Actionを機能させるためには、
         // 有効化する必要がある
         _gameInputs.Enable();
@@ -39,8 +44,10 @@ public class PlayerController : MonoBehaviour
         {
             // ジャンプする力を与える
             _rigidbody2DPlayer.AddForce(Vector2.up * JUMP_POWER);
+            //ジャンプのSEを流す
+            _audioManager.PlaySe(AUDIO.SE_8BITJUMP3);
         }
-
+        
         if (_firstJump == false)
         {
             _firstJump = true;

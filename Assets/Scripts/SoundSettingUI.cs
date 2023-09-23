@@ -13,6 +13,7 @@ public class SoundSettingUI : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
+    [SerializeField] private SliderEventExpansion seSliderExpansion;
 
     [SerializeField] private TitleController titleController;
 
@@ -33,22 +34,32 @@ public class SoundSettingUI : MonoBehaviour
             .AddTo(this);
         //スライダーのイベントを購読
         bgmSlider.onValueChanged.AsObservable()
-            .Subscribe(_ => SetAudioVolume(bgmSlider.value, seSlider.value))
+            .Subscribe(_ => SetBGMVolume(bgmSlider.value))
             .AddTo(this);
-        seSlider.onValueChanged.AsObservable()
-            .Subscribe(_ => SetAudioVolume(bgmSlider.value, seSlider.value))
+        seSliderExpansion.OnChangeValue.AsObservable()
+            .Subscribe(value => SetSeVolume(seSlider.value))
             .AddTo(this);
+
     }
 
     /// <summary>
     /// 音量をセット
     /// </summary>
     /// <param name="bgmVolume"></param>
-    /// <param name="seVolume"></param>
-    private void SetAudioVolume(float bgmVolume, float seVolume)
+    private void SetBGMVolume(float bgmVolume)
     {
         //変化した値を格納する
-        _audioManager.ChangeVolume(bgmVolume, seVolume);
+        _audioManager.ChangeBGMVolume(bgmVolume);
+    }
+    /// <summary>
+    /// 音量をセット
+    /// </summary>
+    /// <param name="seVolume"></param>
+    private void SetSeVolume(float seVolume)
+    {
+        _audioManager.ChangeSeVolume(seVolume);;
+        //SEを鳴らす
+        _audioManager.PlaySe(AUDIO.SE_8BITJUMP3);
     }
 
     private void InitializeSetting()

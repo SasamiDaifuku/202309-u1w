@@ -248,17 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d416d1715bbc06d4789612d1211da8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &408349826 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8991442301015454980, guid: 1fd83699a5bf46a44af7bc6ce9ac552c, type: 3}
-  m_PrefabInstance: {fileID: 4567094966602916741}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e4df423fcd144b28b388ed11bc2706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &483325905 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8885138695506720173, guid: 226c11dd9e0166247b5c37e137a40f4a, type: 3}
@@ -496,6 +485,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &731546616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1502696061888459410, guid: 33cb7133b6bb1c849913113231b6210c, type: 3}
+  m_PrefabInstance: {fileID: 731546613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b762a999b0b746a4ebee86de286d4677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &807169134
@@ -1168,8 +1168,8 @@ MonoBehaviour:
   closeButton: {fileID: 947676343}
   bgmSlider: {fileID: 1094646150}
   seSlider: {fileID: 731546615}
+  seSliderExpansion: {fileID: 731546616}
   titleController: {fileID: 1517222798}
-  audioManager: {fileID: 408349826}
 --- !u!1 &1231669718
 GameObject:
   m_ObjectHideFlags: 0
