@@ -198,4 +198,31 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 		PlayerPrefs.SetFloat (BGM_VOLUME_KEY,  bgmVolume);
 		PlayerPrefs.SetFloat (SE_VOLUME_KEY,   seVolume);
 	}
+	
+	//=================================================================================
+	//音量取得
+	//=================================================================================
+	/// <summary>
+	/// 現在のBGMの音量を取得
+	/// </summary>
+	/// <returns></returns>
+	public float GetBGMVolume()
+	{
+		return _bgmSource.volume;
+	}
+
+	/// <summary>
+	/// 現在のSEの音量を取得
+	/// </summary>
+	/// <returns></returns>
+	public float GetSeVolume()
+	{
+		var volume = SE_VOLUME_DEFAULT;
+		foreach(var seSource in _seSourceList)
+		{
+			volume = seSource.volume;
+			break;
+		}
+		return volume;
+	}
 }
