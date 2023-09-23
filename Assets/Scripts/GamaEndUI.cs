@@ -19,7 +19,7 @@ public class GamaEndUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    void Awake()
+    private void Awake()
     {
         // ボタンの初期値をfalseに設定
         retryButton.enabled = false;

@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private GameController gameController;
     [SerializeField] private GroundCheck groundCheck;
+
+    [SerializeField] private ConversationUI conversationUI;
    
 
     private void Awake()
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         _gameInputs = new GameInputs();
         // Actionイベント登録
         _gameInputs.Player.Jump.performed += OnJump;
+        _gameInputs.Player.Move.performed += OnMove;
         //AudioManagerを取得
         _audioManager = AudioManager.Instance;
         // Input Actionを機能させるためには、
@@ -53,10 +56,25 @@ public class PlayerController : MonoBehaviour
             _firstJump = true;
             //最初のジャンプをした時点でゲームスタートとする
             gameController.SetGameStateGamePlay();
+            //ストーリーを話始める
+            conversationUI.SpeakStoryConversation();
         }
     }
-    private void Update()
+
+    private void OnMove(InputAction.CallbackContext context)
     {
-        
+        //なき声を決める
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                AudioManager.Instance.PlaySe(AUDIO.SE_SE_FROG01);
+                break;
+            case 1:
+                AudioManager.Instance.PlaySe(AUDIO.SE_SE_FROG02);
+                break;
+        }
+        //移動ボタンが押された場合勝手にしゃべる
+        conversationUI.SpeakFreeConversation();
     }
+
 }
