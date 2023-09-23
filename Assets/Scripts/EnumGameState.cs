@@ -5,6 +5,7 @@ public class EnumGameState
     /// </summary>
     public enum GameState {
         Title,
+        Setting,
         BeforeStart,
         GameEvent,
         GamePlay,

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// タイトル画面のメイン処理
@@ -7,6 +8,8 @@ public class TitleController : MonoBehaviour
 {
     //FadeCanvas取得
     [SerializeField] private FadeManager fadeManager;
+    //ゲーム状態
+    public EnumGameState.GameState GetSetGameState { get; private set; } = EnumGameState.GameState.Title;
 
     private void Start()
     {
@@ -18,10 +21,32 @@ public class TitleController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //ボタンがクリックされたときは画面クリックを無視する
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        //ゲーム状態がタイトル以外の時(Setting中等)はクリックを無視する
+        if (GetSetGameState != EnumGameState.GameState.Title) return;
+        
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             //シーンを遷移する
             fadeManager.NextSceneTransition(EnumSceneNum.SceneNum.GameScene);
         }
+    }
+
+    /// <summary>
+    /// ゲーム状態をSettingに変更
+    /// </summary>
+    public void SetGameStateSetting()
+    {
+        GetSetGameState = EnumGameState.GameState.Setting;
+    }
+
+    /// <summary>
+    /// ゲーム状態をTitleに変更
+    /// </summary>
+    public void SetGameStateTitle()
+    {
+        GetSetGameState = EnumGameState.GameState.Title;
     }
 }

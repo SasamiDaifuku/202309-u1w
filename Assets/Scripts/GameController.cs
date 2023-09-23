@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using unityroom.Api;
 
 /// <summary>
 /// Game画面でのメイン処理
@@ -57,7 +58,7 @@ public class GameController : MonoBehaviour
     public void SetGameStateGameClear()
     {
         GetSetGameState = EnumGameState.GameState.GameClear;
-        Debug.Log("ゲームクリア");
-        Debug.Log(timeController.GetTextNowTime());
+        //Unityroomにスコアを送信する
+        UnityroomApiClient.Instance.SendScore(1, timeController.GetSetTime, ScoreboardWriteMode.HighScoreAsc);
     }
 }
