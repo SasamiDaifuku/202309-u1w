@@ -42,12 +42,12 @@ public class TimeController : MonoBehaviour
     private void UpdateDisplayTime(float currentTime)
     {
         //バトルの残り時間を更新
-        timerText.text = currentTime.ToString("00:00.00");
+        timerText.text = currentTime.ToString("00.00");
     }
     
     public string GetTextNowTime()
     {
         //バトルの残り時間を更新
-        return GetSetTime.ToString("00:00.00");
+        return GetSetTime.ToString("00.00");
     }
 }

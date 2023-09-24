@@ -17,7 +17,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ConversationUI conversationUI;
    
+    private enum MovePlatform
+    {
+        Other,
+        UpDown,
+    }
+    private MovePlatform GetSetMovePlatform { get; set; } = MovePlatform.Other;
 
+    private Transform _movePlatformTransform;
+    
     private void Awake()
     {
         _rigidbody2DPlayer = GetComponent<Rigidbody2D>();
@@ -76,5 +84,4 @@ public class PlayerController : MonoBehaviour
         //移動ボタンが押された場合勝手にしゃべる
         conversationUI.SpeakFreeConversation();
     }
-
 }

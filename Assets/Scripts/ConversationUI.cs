@@ -20,7 +20,7 @@ public class ConversationUI : MonoBehaviour
         Free,
         Talk,
     }
-    public Conversation GetSetConversation { get; private set; } = Conversation.Story;
+    private Conversation GetSetConversation { get; set; } = Conversation.Story;
 
     public void SpeakStoryConversation()
     {
@@ -40,17 +40,12 @@ public class ConversationUI : MonoBehaviour
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
             .AppendInterval(NEXT_MESSAGE_INTERVAL)
-            .AppendCallback(() => { speakText.text = "お前が俺を導いてくれるのか？"; })
-            .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
-            .AppendInterval(FADE_MESSAGE_INTERVAL)
-            .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
-            .AppendInterval(NEXT_MESSAGE_INTERVAL)
             .AppendCallback(() => { speakText.text = "この上に天国があるらしいぜ"; })
             .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
             .AppendInterval(NEXT_MESSAGE_INTERVAL)
-            .AppendCallback(() => { speakText.text = "知らんけど"; })
+            .AppendCallback(() => { speakText.text = "...知らんけど"; })
             .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
@@ -70,12 +65,17 @@ public class ConversationUI : MonoBehaviour
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
             .AppendInterval(NEXT_MESSAGE_INTERVAL)
-            .AppendCallback(() => { speakText.text = "あまり痛くしないでくれよ"; })
+            .AppendCallback(() => { speakText.text = "火の玉には当たんないようにしてくれよ"; })
             .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
             .AppendInterval(NEXT_MESSAGE_INTERVAL)
-            .AppendCallback(() => { speakText.text = "死カエルは労わってくれよな"; })
+            .AppendCallback(() => { speakText.text = "俺は熱いのが苦手なんだ"; })
+            .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
+            .AppendInterval(FADE_MESSAGE_INTERVAL)
+            .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
+            .AppendInterval(NEXT_MESSAGE_INTERVAL)
+            .AppendCallback(() => { speakText.text = "死蛙は労わってくれよな"; })
             .Append(GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f))
             .AppendInterval(FADE_MESSAGE_INTERVAL)
             .Append(GetComponent<CanvasGroup>().DOFade(0.0f, 1.0f))
@@ -261,10 +261,5 @@ public class ConversationUI : MonoBehaviour
                     ;
                 break;
         }
-
-        
-
     }
-    
-    
 }
