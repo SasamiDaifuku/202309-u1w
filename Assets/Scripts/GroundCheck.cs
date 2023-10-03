@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
@@ -12,7 +10,7 @@ public class GroundCheck : MonoBehaviour
     /// <summary>
     /// 接地判定に利用するBoxCollider
     /// </summary>
-    public BoxCollider2D _boxCollider;
+    [SerializeField] private BoxCollider2D _boxCollider;
 
     private void Awake()
     {
@@ -31,14 +29,16 @@ public class GroundCheck : MonoBehaviour
         //return Physics2D.CircleCast((Vector2)transform.position + groundCheckOffsetY * Vector2.up , groundCheckRadius, Vector2.down, groundCheckDistance, groundLayers);
     }
 
+    /// <summary>
+    /// Raycastの可視化を行う
+    /// </summary>
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(new Vector2(_boxCollider.transform.position.x, _boxCollider.transform.position.y) + _boxCollider.offset - new Vector2(0f, groundCheckDistance),_boxCollider.size);
-        /*
+        
         //　CircleCastのレイを疑似的に視覚化
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckOffsetY * Vector2.up + Vector2.down * groundCheckDistance, groundCheckRadius);
-        */
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckOffsetY * Vector2.up + Vector2.down * groundCheckDistance, groundCheckRadius);
     }
 }

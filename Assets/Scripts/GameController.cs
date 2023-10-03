@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //フェードイン処理
-        fadeManager.SceneFadeIn();
+        //fadeManager.SceneFadeIn();
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
         
