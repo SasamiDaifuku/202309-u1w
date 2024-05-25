@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using unityroom.Api;
+using UniRx;
 
 /// <summary>
 /// Game画面でのメイン処理
@@ -14,6 +15,8 @@ public class GameController : MonoBehaviour
     //FadeCanvas取得
     [SerializeField] private FadeManager fadeManager;
     [SerializeField] private TimeController timeController;
+    [SerializeField] private CustomButton retryButton;
+    
     public EnumGameState.GameState GetSetGameState { get; private set; } = EnumGameState.GameState.BeforeStart;
     
     void Start()
@@ -22,27 +25,15 @@ public class GameController : MonoBehaviour
         //fadeManager.SceneFadeIn();
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
-        
+        retryButton.OnButtonClicked
+            .Subscribe(_ => fadeManager.CurrentSceneTransition())
+            .AddTo(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 現在のキーボード情報
-        var current = Keyboard.current;
-
-        // キーボード接続チェック
-        if (current == null)
-        {
-            // キーボードが接続されていないと
-            // Keyboard.currentがnullになる
-            return;
-        }
-        // Rキーが押された瞬間かどうか
-        if (current.rKey.wasPressedThisFrame)
-        {
-            fadeManager.CurrentSceneTransition();
-        }
+        
     }
     /// <summary>
     /// ゲーム状態をプレイに変更
