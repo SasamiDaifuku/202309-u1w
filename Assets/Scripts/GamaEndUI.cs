@@ -9,9 +9,9 @@ using TMPro;
 
 public class GamaEndUI : MonoBehaviour
 {
-    [SerializeField] private Button retryButton;
-    [SerializeField] private Button endButton;
-    [SerializeField] private Button tweetButton;
+    [SerializeField] private CustomButton retryButton;
+    [SerializeField] private CustomButton endButton;
+    [SerializeField] private CustomButton tweetButton;
 
     [SerializeField] private FadeManager fadeManager;
     [SerializeField] private GameController gameController;
@@ -19,20 +19,20 @@ public class GamaEndUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    private void Awake()
+    private void Start()
     {
         // ボタンの初期値をfalseに設定
         retryButton.enabled = false;
         endButton.enabled = false;
         tweetButton.enabled = false;
         //クリックイベントを購読
-        retryButton.onClick.AsObservable()
+        retryButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => fadeManager.CurrentSceneTransition())
             .AddTo(this);
-        endButton.onClick.AsObservable()
+        endButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => fadeManager.NextSceneTransition(EnumSceneNum.SceneNum.Title))
             .AddTo(this);
-        tweetButton.onClick.AsObservable()
+        tweetButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => TweetScore())
             .AddTo(this);
         //GameController上のGameStateの状態の変化を購読
@@ -47,7 +47,7 @@ public class GamaEndUI : MonoBehaviour
     /// </summary>
     private void TweetScore()
     {
-        UnityRoomTweet.Tweet("kaeru_kaeru", $"{timeController.GetTextNowTime()}でカエルは天に還りました...", "天に還るカエル", "unity1week");
+        //UnityRoomTweet.Tweet("kaeru_kaeru", $"{timeController.GetTextNowTime()}でカエルは天に還りました...", "天に還るカエル", "unity1week");
     }
 
     /// <summary>

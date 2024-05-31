@@ -50,6 +50,6 @@ public class GameController : MonoBehaviour
     {
         GetSetGameState = EnumGameState.GameState.GameClear;
         //Unityroomにスコアを送信する
-        UnityroomApiClient.Instance.SendScore(1, timeController.GetSetTime, ScoreboardWriteMode.HighScoreAsc);
+        //UnityroomApiClient.Instance.SendScore(1, timeController.GetSetTime, ScoreboardWriteMode.HighScoreAsc);
     }
 }

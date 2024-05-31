@@ -82,6 +82,6 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         //移動ボタンが押された場合勝手にしゃべる
-        conversationUI.SpeakFreeConversation();
+        //conversationUI.SpeakFreeConversation();
     }
 }
