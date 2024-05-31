@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class SoundSettingUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvasGroupSound;
-    [SerializeField] private Button soundButton;
-    [SerializeField] private Button closeButton;
+    [SerializeField] private CustomButton settingButton;
+    [SerializeField] private CustomButton closeButton;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
     [SerializeField] private SliderEventExpansion seSliderExpansion;
@@ -26,10 +26,10 @@ public class SoundSettingUI : MonoBehaviour
         //シーン遷移後もここでAudioManagerを取得
         _audioManager = AudioManager.Instance;
         //クリックイベントを購読
-        soundButton.onClick.AsObservable()
+        settingButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => SoundButtonClickEvent())
             .AddTo(this);
-        closeButton.onClick.AsObservable()
+        closeButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => CloseButtonClickEvent())
             .AddTo(this);
         //スライダーのイベントを購読
@@ -64,7 +64,8 @@ public class SoundSettingUI : MonoBehaviour
 
     private void InitializeSetting()
     {
-        soundButton.interactable = true;
+        //soundButton.interactable = true;
+        settingButton.SetActive(true);
         //UI画面の項目をfalseに設定する
         closeButton.enabled = false;
         bgmSlider.enabled = false;
@@ -82,7 +83,8 @@ public class SoundSettingUI : MonoBehaviour
 
     private void SoundButtonClickEvent()
     {
-        soundButton.interactable = false;
+        //soundButton.interactable = false;
+        settingButton.SetActive(false);
         titleController.SetGameStateSetting();
         
         //UI画面の項目をtrueに設定する
