@@ -22,9 +22,9 @@ public class GamaEndUI : MonoBehaviour
     private void Start()
     {
         // ボタンの初期値をfalseに設定
-        retryButton.enabled = false;
-        endButton.enabled = false;
-        tweetButton.enabled = false;
+        retryButton.SetActive(false);
+        endButton.SetActive(false);
+        tweetButton.SetActive(false);
         //クリックイベントを購読
         retryButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => fadeManager.CurrentSceneTransition())
@@ -56,9 +56,9 @@ public class GamaEndUI : MonoBehaviour
     private void DisplayGameEndUI()
     {
         // ボタンをtrueに設定
-        retryButton.enabled = true;
-        endButton.enabled = true;
-        tweetButton.enabled = true;
+        retryButton.SetActive(true);
+        endButton.SetActive(true);
+        tweetButton.SetActive(true);
 
         //スコアを取得
         scoreText.text = timeController.GetTextNowTime();

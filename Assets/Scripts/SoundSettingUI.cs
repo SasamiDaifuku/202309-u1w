@@ -19,7 +19,7 @@ public class SoundSettingUI : MonoBehaviour
 
     private AudioManager _audioManager;
     
-    private void Awake()
+    private void Start()
     {
         InitializeSetting();
 
@@ -67,7 +67,7 @@ public class SoundSettingUI : MonoBehaviour
         //soundButton.interactable = true;
         settingButton.SetActive(true);
         //UI画面の項目をfalseに設定する
-        closeButton.enabled = false;
+        closeButton.SetActive(false);
         bgmSlider.enabled = false;
         seSlider.enabled = false;
         canvasGroupSound.blocksRaycasts = false;
@@ -88,7 +88,7 @@ public class SoundSettingUI : MonoBehaviour
         titleController.SetGameStateSetting();
         
         //UI画面の項目をtrueに設定する
-        closeButton.enabled = true;
+        closeButton.SetActive(true);
         bgmSlider.enabled = true;
         seSlider.enabled = true;
 

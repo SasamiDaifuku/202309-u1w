@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Playables;
-using unityroom.Api;
 using UniRx;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Game画面でのメイン処理
@@ -22,7 +18,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //フェードイン処理
-        //fadeManager.SceneFadeIn();
+        fadeManager.SceneFadeIn();
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
         retryButton.OnButtonClicked
