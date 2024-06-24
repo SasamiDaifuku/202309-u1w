@@ -18,6 +18,7 @@ public class GamaEndUI : MonoBehaviour
     [SerializeField] private TimeController timeController;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private string LinkUrl = "";
 
     private void Start()
     {
@@ -48,6 +49,21 @@ public class GamaEndUI : MonoBehaviour
     private void TweetScore()
     {
         //UnityRoomTweet.Tweet("kaeru_kaeru", $"{timeController.GetTextNowTime()}でカエルは天に還りました...", "天に還るカエル", "unity1week");
+        string tweettext = $"{timeController.GetTextNowTime()}でカエルは天に還りました...";
+        string hashtags = "天に還るカエル";
+        var url = "https://twitter.com/intent/tweet?"
+                  + "text=" + tweettext
+                  + "&url=" + LinkUrl
+                  + "&hashtags=" + hashtags;
+
+#if UNITY_EDITOR
+        Application.OpenURL ( url );
+#elif UNITY_WEBGL
+            // WebGLの場合は、ゲームプレイ画面と同じウィンドウでツイート画面が開かないよう、処理を変える
+            Application.ExternalEval(string.Format("window.open('{0}','_blank')", url));
+#else
+            Application.OpenURL(url);
+#endif
     }
 
     /// <summary>

@@ -8,11 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.20230917_202309-u1w/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.20230917_202309-u1w/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fade/Materials/UI-Fade-Alpha.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fade/Materials/UI-Fade-Alpha.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene_VC.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene_VC.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Titl_VC.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Titl_VC.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamaEndUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamaEndUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SoundSettingUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SoundSettingUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +22,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Button/CustomButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Button/ScaledCommonButtonView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ranking/PlayFabAuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ranking/PlayFabLogin.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -111,7 +109,7 @@
       <workItem from="1703294151343" duration="605000" />
       <workItem from="1716462948988" duration="6278000" />
       <workItem from="1717162413221" duration="2509000" />
-      <workItem from="1717177161519" duration="3739000" />
+      <workItem from="1717177161519" duration="7523000" />
     </task>
     <servers />
   </component>
