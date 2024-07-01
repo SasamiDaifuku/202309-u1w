@@ -1,3 +1,4 @@
+using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,6 +18,12 @@ public class TitleController : MonoBehaviour
         fadeManager.SceneFadeIn();
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
+        //AdmobSDKの初期化
+        //Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize((InitializationStatus initStatus) =>
+        {
+            // This callback is called once the MobileAds SDK is initialized.
+        });
     }
     
     private void Update()

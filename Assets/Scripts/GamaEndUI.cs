@@ -4,7 +4,6 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
-using naichilab;
 using TMPro;
 
 public class GamaEndUI : MonoBehaviour
