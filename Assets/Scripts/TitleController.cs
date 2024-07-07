@@ -30,6 +30,13 @@ public class TitleController : MonoBehaviour
     {
         //ボタンがクリックされたときは画面クリックを無視する
         if (EventSystem.current.IsPointerOverGameObject()) return;
+        //iPhoneでのタッチの確認はこっちを使う
+        if (Input.GetMouseButtonDown (0)) {
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+                // nGUI上をクリックしているので処理をキャンセルする。
+                return;
+            }
+        }
 
         //ゲーム状態がタイトル以外の時(Setting中等)はクリックを無視する
         if (GetSetGameState != EnumGameState.GameState.Title) return;

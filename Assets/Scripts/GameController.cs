@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private FadeManager fadeManager;
     [SerializeField] private TimeController timeController;
     [SerializeField] private CustomButton retryButton;
+    [SerializeField] private AdmobInterstitial admobInterstitial;
     
     public EnumGameState.GameState GetSetGameState { get; private set; } = EnumGameState.GameState.BeforeStart;
     
@@ -22,15 +23,19 @@ public class GameController : MonoBehaviour
         //音楽を流す
         AudioManager.Instance.PlayBGM(AUDIO.BGM_IWASHIRO_SAWAGURO_ERIKO);
         retryButton.OnButtonClicked
-            .Subscribe(_ => fadeManager.CurrentSceneTransition())
+            .Subscribe(_ => RetryGame())
             .AddTo(this.gameObject);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    /// <summary>
+    /// リトライする
+    /// </summary>
+    private void RetryGame()
     {
-        
+        admobInterstitial.ShowAd();
+        fadeManager.CurrentSceneTransition();
     }
+    
     /// <summary>
     /// ゲーム状態をプレイに変更
     /// </summary>

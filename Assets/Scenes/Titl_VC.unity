@@ -177,11 +177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.28708133
+      value: 0.30467254
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.42583734
+      value: 0.39065495
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1220,6 +1220,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 39483642}
+    - target: {fileID: 536741818521697781, guid: dfbdbae69a421254daaa68c636272142, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 536741818521697781, guid: dfbdbae69a421254daaa68c636272142, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 802630386994204715, guid: dfbdbae69a421254daaa68c636272142, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -55
@@ -1716,6 +1724,10 @@ PrefabInstance:
     - target: {fileID: 7021325551233814819, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
       propertyPath: m_Name
       value: AdmobBanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164840530226628231, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: IphoneAdUnitId
+      value: ca-app-pub-7551946912738729/2851185468
       objectReference: {fileID: 0}
     - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
       propertyPath: m_LocalPosition.x
