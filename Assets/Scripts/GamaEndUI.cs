@@ -17,6 +17,7 @@ public class GamaEndUI : MonoBehaviour
     [SerializeField] private TimeController timeController;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private AdmobInterstitial admobInterstitial;
     [SerializeField] private string LinkUrl = "";
 
     private void Start()
@@ -27,10 +28,10 @@ public class GamaEndUI : MonoBehaviour
         tweetButton.SetActive(false);
         //クリックイベントを購読
         retryButton.OnButtonClicked.AsObservable()
-            .Subscribe(_ => fadeManager.CurrentSceneTransition())
+            .Subscribe(_ => RetryGame())
             .AddTo(this);
         endButton.OnButtonClicked.AsObservable()
-            .Subscribe(_ => fadeManager.NextSceneTransition(EnumSceneNum.SceneNum.Title))
+            .Subscribe(_ => EndGame())
             .AddTo(this);
         tweetButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => TweetScore())
@@ -40,6 +41,20 @@ public class GamaEndUI : MonoBehaviour
             .ObserveEveryValueChanged(x => x.GetSetGameState)
             .Where(x => x == EnumGameState.GameState.GameClear)
             .Subscribe(x => DisplayGameEndUI());
+    }
+    /// <summary>
+    /// リトライする
+    /// </summary>
+    private void RetryGame()
+    {
+        admobInterstitial.ShowAd();
+        fadeManager.CurrentSceneTransition();
+    }
+
+    private void EndGame()
+    {
+        admobInterstitial.ShowAd();
+        fadeManager.NextSceneTransition(EnumSceneNum.SceneNum.Title);
     }
 
     /// <summary>

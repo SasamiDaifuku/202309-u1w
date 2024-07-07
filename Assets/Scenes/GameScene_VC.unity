@@ -1641,6 +1641,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684752448}
   m_CullTransparentMesh: 1
+--- !u!1 &761610407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761610409}
+  - component: {fileID: 761610408}
+  m_Layer: 0
+  m_Name: AdmobInterstitial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &761610408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761610407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ac2f9bae950488fbe51932aa7bb7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AndroidAdUnitId: ca-app-pub-3940256099942544/1033173712
+  IphoneAdUnitId: ca-app-pub-3940256099942544/4411468910
+--- !u!4 &761610409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761610407}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832833749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5458,7 @@ Transform:
   m_GameObject: {fileID: 1645931760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -4.5, z: 0}
+  m_LocalPosition: {x: -2.48, y: 30.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5953,6 +5999,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 178, y: 384}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1737940823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7021325551233814819, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_Name
+      value: AdmobBanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
 --- !u!1 &1745099682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6128,7 +6231,7 @@ Transform:
   m_GameObject: {fileID: 1815159384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.060000088, y: -4.5, z: -10}
+  m_LocalPosition: {x: -2.48, y: 30.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7981,6 +8084,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1992794426}
+    - target: {fileID: 6587279229569151171, guid: dfbdbae69a421254daaa68c636272142, type: 3}
+      propertyPath: admobInterstitial
+      value: 
+      objectReference: {fileID: 761610408}
     - target: {fileID: 7364177307055303205, guid: dfbdbae69a421254daaa68c636272142, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -8083,11 +8190,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 626013638648589813, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.059999134
+      value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: 626013638648589813, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8000002
+      value: 30.79
       objectReference: {fileID: 0}
     - target: {fileID: 626013638648589813, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8127,11 +8234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.28442276
+      value: 0.28708133
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.4311545
+      value: 0.42583734
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8332,3 +8439,5 @@ SceneRoots:
   - {fileID: 755734217513927159}
   - {fileID: 914483540}
   - {fileID: 168671426}
+  - {fileID: 1737940823}
+  - {fileID: 761610409}

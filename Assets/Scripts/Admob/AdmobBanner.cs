@@ -11,19 +11,20 @@ public class AdmobBanner : MonoBehaviour
     [SerializeField]
     private string IphoneAdUnitId = "ca-app-pub-3940256099942544/2934735716";
     
-    // These ad units are configured to always serve test ads.
-#if UNITY_ANDROID
-  private string _adUnitId = AndroidAdUnitId;
-#elif UNITY_IPHONE
-  private string _adUnitId = IphoneAdUnitId;
-#else
     private string _adUnitId = "unused";
-#endif
     
     BannerView _bannerView;
     
     private void Start()
     {
+    // These ad units are configured to always serve test ads.
+#if UNITY_ANDROID
+    _adUnitId = AndroidAdUnitId;
+#elif UNITY_IPHONE
+    _adUnitId = IphoneAdUnitId;
+#else
+    _adUnitId = "unused";
+#endif
         //AdmobSDKの初期化
         //Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize((InitializationStatus initStatus) =>
@@ -65,7 +66,7 @@ public class AdmobBanner : MonoBehaviour
     /// <summary>
     /// Destroys the banner view.
     /// </summary>
-    public void DestroyBannerView()
+    public void OnDestroy()
     {
         if (_bannerView != null)
         {
