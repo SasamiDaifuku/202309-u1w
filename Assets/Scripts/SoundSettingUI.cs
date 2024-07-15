@@ -11,6 +11,7 @@ public class SoundSettingUI : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroupSound;
     [SerializeField] private CustomButton settingButton;
     [SerializeField] private CustomButton closeButton;
+    [SerializeField] private CustomButton policyButton;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
     [SerializeField] private SliderEventExpansion seSliderExpansion;
@@ -31,6 +32,9 @@ public class SoundSettingUI : MonoBehaviour
             .AddTo(this);
         closeButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => CloseButtonClickEvent())
+            .AddTo(this);
+        policyButton.OnButtonClicked.AsObservable()
+            .Subscribe(_ => PolicyButtonClickEvent())
             .AddTo(this);
         //スライダーのイベントを購読
         bgmSlider.onValueChanged.AsObservable()
@@ -98,6 +102,11 @@ public class SoundSettingUI : MonoBehaviour
         canvasGroupSound.blocksRaycasts = true;
         //0.5秒かけてUI画面を表示
         canvasGroupSound.DOFade(1.0f, 0.5f);
+    }
+    
+    private void PolicyButtonClickEvent()
+    {
+        Application.OpenURL("https://sasami-daifuku.com/tennikaerukaeru-privacy-policy");
     }
     
 }

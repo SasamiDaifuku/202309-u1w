@@ -10,6 +10,9 @@ public class AdmobBanner : MonoBehaviour
     private string AndroidAdUnitId = "ca-app-pub-3940256099942544/6300978111";
     [SerializeField]
     private string IphoneAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    [SerializeField]
+    private string ReleaseIphoneAdUnitId = "ca-app-pub-7551946912738729/2851185468";
+    
     
     private string _adUnitId = "unused";
     

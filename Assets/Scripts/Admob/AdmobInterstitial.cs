@@ -12,6 +12,8 @@ public class AdmobInterstitial : MonoBehaviour
     private string AndroidAdUnitId = "ca-app-pub-3940256099942544/1033173712";
     [SerializeField]
     private string IphoneAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    [SerializeField]
+    private string ReleaseIphoneAdUnitId = "ca-app-pub-7551946912738729/4528821532";
     
     private string _adUnitId = "unused";
 
