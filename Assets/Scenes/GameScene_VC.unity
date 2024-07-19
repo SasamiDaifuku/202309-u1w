@@ -1670,7 +1670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ac2f9bae950488fbe51932aa7bb7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AndroidAdUnitId: ca-app-pub-3940256099942544/1033173712
+  AndroidAdUnitId: ca-app-pub-7551946912738729/7344133664
   IphoneAdUnitId: ca-app-pub-7551946912738729/2851185468
   ReleaseIphoneAdUnitId: ca-app-pub-7551946912738729/2851185468
 --- !u!4 &761610409
@@ -6016,6 +6016,10 @@ PrefabInstance:
       propertyPath: IphoneAdUnitId
       value: ca-app-pub-7551946912738729/2851185468
       objectReference: {fileID: 0}
+    - target: {fileID: 7164840530226628231, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: AndroidAdUnitId
+      value: ca-app-pub-7551946912738729/8484990791
+      objectReference: {fileID: 0}
     - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8208,7 +8212,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 626013638648589813, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000005662441
+      value: 0.00000008940697
       objectReference: {fileID: 0}
     - target: {fileID: 626013638648589813, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8252,11 +8256,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.28879836
+      value: 0.08847508
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.42240328
+      value: 0.82304984
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

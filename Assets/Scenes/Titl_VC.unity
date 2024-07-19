@@ -177,11 +177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.087962985
+      value: 0.08847508
       objectReference: {fileID: 0}
     - target: {fileID: 8651007839911643411, guid: 06d4c003b2ee9cd4586b22b464f1cfd5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.82407403
+      value: 0.82304984
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2002,6 +2002,10 @@ PrefabInstance:
     - target: {fileID: 7164840530226628231, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
       propertyPath: IphoneAdUnitId
       value: ca-app-pub-7551946912738729/2851185468
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164840530226628231, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
+      propertyPath: AndroidAdUnitId
+      value: ca-app-pub-7551946912738729/8484990791
       objectReference: {fileID: 0}
     - target: {fileID: 7635865509877647780, guid: 93878e0a09aad402fa374a0892b26d26, type: 3}
       propertyPath: m_LocalPosition.x
