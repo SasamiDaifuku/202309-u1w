@@ -34,6 +34,7 @@ public class RankingManager : MonoBehaviour{
     private bool _shouldCreateAccount;//アカウントを作成するか    
     private string _customID;//ログイン時に使うID
     private float delayTime = 2;//遅延時間
+    [SerializeField] private TimeController timeController;
     private static readonly string LAST_NAME_KEY = "LAST_NAME_KEY";
     private static readonly string CUSTOM_ID_SAVE_KEY = "CUSTOM_ID_SAVE_KEY";
 
@@ -87,10 +88,8 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         
         RefreshLeaderboard(); // リーダーボード情報の読み込みと表示
         
-        //SE再生(必要に応じて置き換える)
-        //SoundManager.i.PlaySe(clickSe);
         //今回のスコアを取得するメソッド、実装はゲームに依存
-        //currentScore = GameManager.i.GetScore(); 
+        //currentScore.text = timeController.GetTextNowTime(); 
         //今回のスコア用のテキストの内容を今回のスコアに置き換える
         //currentScoreText.text = currentScore.ToString();
         //ハイスコア取得、実装はゲームに依存

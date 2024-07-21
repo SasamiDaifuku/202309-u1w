@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: sasamidaifuku@gmail.com
-  DevAccountToken: g6zyrn5uw8pztkjn3hmbuadsw6mcmadmoewbpzeemn3chrepp6cnc3gki9ac9diaymxia49w6i6oyye1q7km7n3endqm831hpug3njtepmm84boqhat7wsyafqjio1njx84kq3fdwbe8w1z46odmzaek9r18mk5gy3e8npqsmahbz4fgkyqk73ytxfoxbnxm6pct7x4w
+  DevAccountToken: zfz5iek4qo6fbtxijogixxm4ixuwmih3y7ymc1xzehge6iqr8cd9747xo8akmjwq31arkpiiq3w8uzhnp1a3r1qanybirrqz66rkzxdp8pkfmfde9tpkm3ac3gh4gy1dqy4wefkeup68heno6fujuw5u5far4hmk1ty5okazmmozprgndh8p5s65w7izzmjyd8pj811g
   AadAuthorization: 
   SelectedStudio: SasamiStudio
   SdkPath: Assets/PlayFabSDK
@@ -21,4 +21,4 @@ MonoBehaviour:
   LocalCloudScriptPath: 
   PanelIsShown: 0
   curMainMenuIdx: 1
-  curSubMenuIdx: 2
+  curSubMenuIdx: 0
