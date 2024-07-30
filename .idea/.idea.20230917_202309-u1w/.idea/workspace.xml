@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0631580d-1cea-454b-9f77-34b782e6a079" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Fade/Materials/UI-Fade-Alpha.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fade/Materials/UI-Fade-Alpha.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayFabSDK/Shared/Public/Resources/PlayFabSharedSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabSDK/Shared/Public/Resources/PlayFabSharedSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TextPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TextPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene_VC.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene_VC.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ranking/RankingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ranking/RankingManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
       <workItem from="1717177161519" duration="7523000" />
       <workItem from="1721042649848" duration="6000" />
       <workItem from="1721055644969" duration="626000" />
-      <workItem from="1721481387290" duration="1399000" />
+      <workItem from="1721481387290" duration="2000000" />
     </task>
     <servers />
   </component>

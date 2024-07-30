@@ -11,6 +11,7 @@ public class GamaEndUI : MonoBehaviour
     [SerializeField] private CustomButton retryButton;
     [SerializeField] private CustomButton endButton;
     [SerializeField] private CustomButton tweetButton;
+    [SerializeField] private CustomButton rankingButton;
 
     [SerializeField] private FadeManager fadeManager;
     [SerializeField] private GameController gameController;
@@ -19,6 +20,7 @@ public class GamaEndUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private AdmobInterstitial admobInterstitial;
     [SerializeField] private string LinkUrl = "";
+    [SerializeField] private RankingManager rankingManager;
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class GamaEndUI : MonoBehaviour
         retryButton.SetActive(false);
         endButton.SetActive(false);
         tweetButton.SetActive(false);
+        rankingButton.SetActive(false);
         //クリックイベントを購読
         retryButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => RetryGame())
@@ -35,6 +38,9 @@ public class GamaEndUI : MonoBehaviour
             .AddTo(this);
         tweetButton.OnButtonClicked.AsObservable()
             .Subscribe(_ => TweetScore())
+            .AddTo(this);
+        rankingButton.OnButtonClicked.AsObservable()
+            .Subscribe(_ => DisplayRanking())
             .AddTo(this);
         //GameController上のGameStateの状態の変化を購読
         gameController
@@ -79,6 +85,13 @@ public class GamaEndUI : MonoBehaviour
             Application.OpenURL(url);
 #endif
     }
+    /// <summary>
+    /// ランキング画面を表示する
+    /// </summary>
+    private void DisplayRanking()
+    {
+        rankingManager.OnRankingButtonClicked();
+    }
 
     /// <summary>
     /// ゲーム終了時のUIを表示する
@@ -89,9 +102,20 @@ public class GamaEndUI : MonoBehaviour
         retryButton.SetActive(true);
         endButton.SetActive(true);
         tweetButton.SetActive(true);
+        rankingButton.SetActive(true);
 
         //スコアを取得
         scoreText.text = timeController.GetTextNowTime();
+        
+        //ベストタイム更新の判定
+        float bestTime = PlayerPrefs.GetFloat("BEST_TIME", 10000);
+        if (timeController.GetSetTime < bestTime)
+        {
+            //ベストタイムを更新
+            bestTime = timeController.GetSetTime;
+            PlayerPrefs.SetFloat("BEST_TIME",bestTime);
+            PlayerPrefs.Save();
+        }
         
         //ゲーム終了時のUIを0.5秒かけて表示
         GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f);

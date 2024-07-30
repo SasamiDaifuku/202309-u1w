@@ -8,6 +8,7 @@ public class TimeController : MonoBehaviour
     private const float START_TIME = 0f;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameController gameController;
+    
 
     /// <summary>
     /// タイマーの時間

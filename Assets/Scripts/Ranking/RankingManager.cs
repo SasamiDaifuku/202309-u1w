@@ -7,29 +7,24 @@ using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.Playables;
+using UniRx;
+using DG.Tweening;
 
-public class RankingManager : MonoBehaviour{
-    [Header("ランキングウィンドウ")]public Transform rankingWindow;
-    [Header("バックパネル")]public GameObject backPanel;
-    [Header("送信するランキング名")]public string rankingName;
-    [Header("今回のスコア")]public TextMeshProUGUI currentScoreText;
-    [Header("ハイスコア")]public TextMeshProUGUI highScoreText;
+public class RankingManager : MonoBehaviour
+{
+    [Header("ランキングUIのGameObject")]public GameObject gameObject;
+    [Header("今回のタイム")]public TextMeshProUGUI currentTimeText;
+    [Header("ベストタイム")]public TextMeshProUGUI bestTimeText;
     [Header("名前入力フィールド")]public TMP_InputField nameInputField;
     [Header("名前入力フィールド未入力時に表示される文字")]public TextMeshProUGUI placeholder;
     private string placeholderText;//入力が一度もされていないときにインプットフィールドに表示される文字 
     [Header("リーダーズボード")]public TMP_Text leaderboardText; 
     [Header("リーダーズボードのスクロールビュー")]public ScrollRect leaderboardScrollView;
-    private int currentScore; //今回のスコア(データ)
-    private int highScore; //ハイスコア(データ)
-    [Header("データ送信時SE")]public AudioClip sendSe;
-    [Header("クリック時SE")]public AudioClip clickSe;
-    [Header("クローズ時SE")]public AudioClip closeSe;
-    [Header("データ送信ボタン")]public Button sendScoreButton;
-    [Header("ランキングウィンドウクローズボタン")]public Button closeButton;
+    private float bestTime; //ハイスコア(データ)
+    [Header("データ送信ボタン")]public CustomButton sendScoreButton;
+    [Header("ランキングウィンドウクローズボタン")]public CustomButton closeButton;
     [Header("ランキング読込中に表示する画像")]public GameObject loadingImage;
     [Header("ランキング読込中または読み込み失敗時に表示するテキスト")]public TextMeshProUGUI loadingText;
-    [Header("ウィンドウを表示するときのタイムライン")]public PlayableDirector startdirector;
-    [Header("ウィンドウを非表示するときのタイムライン")]public PlayableDirector closedirector;
     private int windowDisplayCount;//ランキングウィンドウを表示した回数
     private bool _shouldCreateAccount;//アカウントを作成するか    
     private string _customID;//ログイン時に使うID
@@ -37,11 +32,10 @@ public class RankingManager : MonoBehaviour{
     [SerializeField] private TimeController timeController;
     private static readonly string LAST_NAME_KEY = "LAST_NAME_KEY";
     private static readonly string CUSTOM_ID_SAVE_KEY = "CUSTOM_ID_SAVE_KEY";
+    private static readonly string RANKING_NAME = "TimeAttack"; //送信するランキング名
 
-    private void OnEnable(){
-        //それぞれのボタンにメソッド登録
-        sendScoreButton.onClick.AddListener(OnSendScoreButtonClicked);
-        closeButton.onClick.AddListener(OnCloseButtonClicked);
+    private void OnEnable()
+    {
         //PlayFabにログインする
         Login();
         //デフォルトメッセージはiOS、Androidの場合とパソコンの場合で変える
@@ -61,14 +55,24 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         }
         //ロード時のテキストをランキング読込中…に変更する
         loadingText.text = "ランキング読込中…";
-        //バックパネルを非表示にする
-        backPanel.SetActive(false);
     }
 
     /// <summary>
     /// ランキングウィンドウ表示ボタンクリック
     /// </summary>
-    public void OnRankingButtonClicked(){
+    public void OnRankingButtonClicked()
+    {
+        gameObject.SetActive(true);
+        //ランキングのUIを0.5秒かけて表示
+        gameObject.GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f);
+        //それぞれのボタンにメソッド登録
+        sendScoreButton.OnButtonClicked.AsObservable()
+            .Subscribe(_ => OnSendScoreButtonClicked())
+            .AddTo(this);
+        closeButton.OnButtonClicked.AsObservable()
+            .Subscribe(_ => OnCloseButtonClicked())
+            .AddTo(this);
+        
         ShowLoadingImage(true); // ランキング読み込み前にローディング画像を表示
         //Playfabにログインしていない場合
         if (!PlayFabClientAPI.IsClientLoggedIn()){
@@ -76,11 +80,13 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
             Debug.Log("User is not logged in. Logging in...");
             //PlayFabにログインする
             Login();
+            gameObject.SetActive(false);
+            //ランキングのUIを0.5秒かけて表示
+            GetComponent<CanvasGroup>().alpha = 0;
             return;
         }
-        
         // スコア送信ボタンを非活性にする
-        sendScoreButton.interactable = false;
+        sendScoreButton.SetActive(true);
         //ランキングウィンドウを表示した回数を初期化
         windowDisplayCount = 0;
         //スクロールビューを一番上に戻す
@@ -88,19 +94,13 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         
         RefreshLeaderboard(); // リーダーボード情報の読み込みと表示
         
-        //今回のスコアを取得するメソッド、実装はゲームに依存
-        //currentScore.text = timeController.GetTextNowTime(); 
-        //今回のスコア用のテキストの内容を今回のスコアに置き換える
-        //currentScoreText.text = currentScore.ToString();
+        //今回のスコアを取得するメソッド
+        currentTimeText.text = timeController.GetTextNowTime();
         //ハイスコア取得、実装はゲームに依存
-        //highScore = GameManager.i.GetHighScore();
+        bestTime = PlayerPrefs.GetFloat("BEST_TIME", 10000);
         //ハイスコア用のテキストの内容をハイスコアに置き換える
-        //highScoreText.text = highScore.ToString();
-        
+        bestTimeText.text = bestTime.ToString("00.00");
         StartCoroutine(RefreshLeaderboardWithDelay(delayTime)); // 2秒の遅延を挟む
-        
-        //ウィンドウを表示させるタイムラインを再生
-        startdirector.Play();
     }
 
     /// <summary>
@@ -114,16 +114,19 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         ShowLoadingImage(true); 
         var request = new GetLeaderboardRequest {
             //送信するランキング名(Playfabのランキングと名前を合わせる)
-            StatisticName = rankingName,
+            StatisticName = RANKING_NAME,
             StartPosition = 0,
             //何位まで表示するか
             MaxResultsCount = 20
         };
         PlayFabClientAPI.GetLeaderboard(request, result => {
             leaderboardText.text = ""; // テキストの初期化
-            foreach (var item in result.Leaderboard){
+            foreach (var item in result.Leaderboard)
+            {
+                float time = item.StatValue/100f;
+                string timeString = time.ToString("00.00");
                 //○○位；名前；○○点と表示された後に改行が入り、1つの順位となる。
-                leaderboardText.text += $"{item.Position + 1}位: {item.DisplayName}: {item.StatValue}\n";
+                leaderboardText.text += $"{item.Position + 1}位: {item.DisplayName}: {timeString}\n";
             }
             // リーダーボード読み込み完了後にローディング画像を非表示
             if(windowDisplayCount>=2){
@@ -140,19 +143,22 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
     /// </summary>
     public void OnSendScoreButtonClicked(){
         // 送信後はボタンを非活性化(何回も押せないように)
-        sendScoreButton.interactable = false; 
+        sendScoreButton.SetActive(false); 
         ShowLoadingImage(true); // データ送信中にローディング画像を表示
         //ロード時のテキストをランキング読込中…に変更する
         loadingText.text = "ランキング読込中…";
-        // スコア送信時のサウンド(適宜変更する)
-        //SoundManager.i.PlaySe(sendSe); 
         // 名前が空の場合は「名無し」を使用
         string playerName = string.IsNullOrEmpty(nameInputField.text) ? "名無し" : nameInputField.text;
-        //ES3.Save<string>("LastName", playerName); // 名前の保存、空の場合「名無し」を保存
         UpdatePlayerDisplayName(playerName); // プレイヤー名の更新処理を追加
+        //PlayFabはint型しか登録できないので×100してint型に変換3
+        float bestTimeMul = bestTime * 100;
+        int bestTimeInt = (int)bestTimeMul;
+        Debug.Log($"ベストタイム={bestTime}");
+        Debug.Log($"ベストタイム×100={bestTimeMul}");
+        Debug.Log($"ベストタイム整数={bestTimeInt}");
         var request = new UpdatePlayerStatisticsRequest {
             //スコアの更新
-            Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = rankingName, Value = currentScore } }
+            Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = RANKING_NAME, Value = bestTimeInt } }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, result => {
             //スコア更新処理が完了したら、少し遅延を挟んでからリーダーボードを再読み込みする
@@ -171,6 +177,7 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
     void ShowLoadingImage(bool show) {
         //ランキング読込中に表示する画像
         loadingImage.SetActive(show);
+        loadingText.enabled = show;
     }
     
     /// <summary>
@@ -202,27 +209,28 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         yield return new WaitForSeconds(delay); // 指定された秒数待つ
         RefreshLeaderboard(); // リーダーボードの再読み込み
         // ハイスコアの更新チェック
-        if(currentScore >= highScore){
+        /*
+        if(currentTime >= bestTime){
             //今回のスコアがハイスコアを越えていたら、
-            highScore = currentScore;
+            bestTime = currentTime;
             //今回のスコアがハイスコアになる
-            highScoreText.text = highScore.ToString();
+            bestTimeText.text = bestTime.ToString();
             //データ送信ボタンを押せるようにする
-            sendScoreButton.interactable = true;
+            sendScoreButton.SetActive(true);
         }
+        */
     }
     
     /// <summary>
     /// クローズボタン(背景)クリック
     /// </summary>
-    public void OnCloseButtonClicked(){
-        // クローズボタンの効果音(適宜変更)
-        //SoundManager.i.PlaySe(closeSe);
+    public void OnCloseButtonClicked()
+    {
         //ランキングウィンドウを表示した回数を初期化
         windowDisplayCount = 0;
-        
-        //ウィンドウを非表示させるタイムラインを再生
-        closedirector.Play();
+        //0.5秒かけてUI画面を消す
+        GetComponent<CanvasGroup>().DOFade(0.0f, 0.5f);
+        gameObject.SetActive(false);
     }
     
     /// <summary>
@@ -230,6 +238,7 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
     /// </summary>
     private void Login(){
         _customID = LoadCustomID();
+        Debug.Log($"CustomID = {_customID}");
         var request = new LoginWithCustomIDRequest { CustomId = _customID, CreateAccount = _shouldCreateAccount };//補足　既にアカウントが作成されており、CreateAccountがtrueになっていてもエラーにはならない
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
     }
@@ -267,7 +276,7 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
     private string LoadCustomID(){
         // キーが存在するか確認し、存在しない場合はデフォルト値を返す
         //string id = ES3.Load<string>(CUSTOM_ID_SAVE_KEY, defaultValue:"");
-        string id = PlayerPrefs.GetString(CUSTOM_ID_SAVE_KEY, "Foobar");;
+        string id = PlayerPrefs.GetString(CUSTOM_ID_SAVE_KEY, "");
 
         //idの中身がnullもしくは空の文字列("")の場合は_shouldCreateAccountはtrueになる。
         _shouldCreateAccount = string.IsNullOrEmpty(id);
@@ -275,6 +284,7 @@ if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform
         //idの中身がない場合、文字列を新規作成
         if (_shouldCreateAccount)
         {
+            Debug.Log("idが空");
             return GenerateCustomID();//文字列を新規作成
         }
         else

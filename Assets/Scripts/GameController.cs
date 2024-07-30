@@ -32,7 +32,11 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void RetryGame()
     {
-        admobInterstitial.ShowAd();
+        if (Probability(10))
+        {
+            //リトライボタン押下時10%の確率で広告再生
+            admobInterstitial.ShowAd();
+        }
         fadeManager.CurrentSceneTransition();
     }
     
@@ -52,5 +56,28 @@ public class GameController : MonoBehaviour
         GetSetGameState = EnumGameState.GameState.GameClear;
         //Unityroomにスコアを送信する
         //UnityroomApiClient.Instance.SendScore(1, timeController.GetSetTime, ScoreboardWriteMode.HighScoreAsc);
+    }
+    
+    /// <summary>
+    /// 確率判定
+    /// </summary>
+    /// <param name="fPercent">確率 (0~100)</param>
+    /// <returns>当選結果 [true]当選</returns>
+    private static bool Probability(float fPercent)
+    {
+        float fProbabilityRate = Random.value * 100.0f;
+
+        if(fPercent == 100.0f && fProbabilityRate == fPercent)
+        {
+            return true;
+        }
+        else if (fProbabilityRate < fPercent)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
